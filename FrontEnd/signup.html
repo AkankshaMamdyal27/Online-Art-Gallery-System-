@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f89719;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.signup-container, .login-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.signup-container h2, .login-container h2 {
+    margin-bottom: 20px;
+}
+
+.signup-container label, .login-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.signup-container input, .login-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #f89719;
+    border-radius: 4px;
+}
+
+.signup-container button, .login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+            <label for="username">Username:(FirstName and LastName)</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="PhoneNumber">Phone No:</label>
+            <input type="PhoneNumber" id="PhoneNumber" name="PhoneNumber" required>
+
+            <label for="Address">Address:</label>
+            <input type="Address" id="Address" name="Address" required>
+			
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            
+            <button type="submit">Create Account</button>
+            <p id="signup-error-message" class="error-message"></p>
+        </form>
+    </div>
+</body>
+</html>
+<script>
+    // signup.js
+document.getElementById('signupForm').addEventListener('submit', function(event) 
+{
+    event.preventDefault(); // Prevent form from submitting
+
+    var username = document.getElementById('username').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirm-password').value;
+    var errorMessage = document.getElementById('signup-error-message');
+
+    // Clear any previous error messages
+    errorMessage.textContent = '';
+
+    // Simple email validation regex
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (username.length < 3) {
+        errorMessage.textContent = 'Username must be at least 3 characters long';
+    } else if (!emailRegex.test(email)) {
+        errorMessage.textContent = 'Please enter a valid email address';
+    } else if (password.length < 6) {
+        errorMessage.textContent = 'Password must be at least 6 characters long';
+    } else if (password !== confirmPassword) {
+        errorMessage.textContent = 'Passwords do not match';
+    } else {
+        // Store user data in localStorage
+        var user = {
+            username: username,
+            email: email,
+            password: password
+        };
+        localStorage.setItem('user', JSON.stringify(user));
+        alert('Account created successfully!');
+        // Redirect to login page
+        window.location.href = 'signin.html';
+    }
+});
+
+</script>
+

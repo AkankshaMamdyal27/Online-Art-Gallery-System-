@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+   <!-- load stylesheets -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">                
+   <link rel="stylesheet" href="css/bootstrap.min.css">                               
+   <link rel="stylesheet" href="css/tooplate-style.css"> 
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+		<!-- Responsive-->
+		<link rel="stylesheet" href="css/responsive.css">
+		<!-- fevicon -->
+		
+		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+		<!-- Tweaks for older IEs-->
+         
+        </head>
+<body>
+
+     <!-- banner bg main start -->
+  <div class="banner_bg_main">
+    <!-- header top section start -->
+    <div class="container">
+      <div class="header_section_top">
+        <div class="row">
+          <div class="col-sm-12">
+             <div class="custom_menu">
+                <ul>
+                    <li><a href="AllArts.html">ALL ARTS</a></li>
+                    <li><a href="Offers.html">OFFERS</a></li>
+                          <li><a href="#">
+                             <a href="signin.html"><span class="padding_10">LOGIN</span></a>
+                          </li>
+                          <li><a href="#"> 
+                             <a href="signup.html"><span class="padding_10">REGISTER NOW</span></a>
+                             <li><a href="About.html">ABOUT</a></li>
+                             <li><a href="service.html">CONTACT US</a></li>
+                 </ul>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<br>
+</br>
+
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Product Details </h1>
+				<div class = "card-body">
+					<form th:action="@{/customers}" th:object = "${customers}" method="POST">
+						<div class ="form-group">
+                            <legend>Personal Details</legend>
+                            <label> Customer name </label>
+                            <input
+                            type = "text"
+                            name = "fullname"
+                            th:field = "*{fullname}"
+                            class = "form-control"
+                            placeholder="Enter Customer Full Name" 
+                            required/>
+                        </div>
+						
+						<div class ="form-group">
+							<label> Customer Email </label>
+							<input
+							type = "text"
+							name = "email"
+							th:field = "*{email}"
+							class = "form-control"
+							placeholder="Enter Customer Email" 
+							required/>
+						</div>
+                        <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required/>
+<br>
+                        <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="female">Other</option>
+                </select>
+
+              
+                <div id="Art gallary" class="Arts">
+                    <label for="Arts">Choose art:</label>
+                    <select id="Arts" name="Arts">
+                        <option value="Traditiona">TRADITIONAL ARTS</option>
+                        <option value="New">NEW ARRIVALS</option>
+                        <option value="forms">ART FORMS</option>
+
+                    </select>
+                </div>
+                    <div class ="form-group">
+                        <legend>Address Details</legend>
+                        <label> Customer Address </label>
+                        <input
+                        type = "text"
+                        name = "streetAddress"
+                        th:field = "*{streetAddress}"
+                        class = "form-control"
+                        placeholder="Enter Customer Street Address" 
+                        required/>
+                    </div>
+                    
+    <div class ="form-group">
+        <label> City </label>
+        <input
+        type = "text"
+        name = "city"
+        th:field = "*{city}"
+        class = "form-control"
+        placeholder="Enter Customer City" 
+        required/>
+    </div>
+    <div class ="form-group">
+        <label> State </label>
+        <input
+        type = "text"
+        name = "State"
+        th:field = "*{State}"
+        class = "form-control"
+        placeholder="Enter Customer State" 
+        required/>
+    </div>
+    <div class ="form-group">
+        <label> Zip Code </label>
+        <input
+        type = "text"
+        name = "zipcode"
+        th:field = "*{zipcode}"
+        class = "form-control"
+        placeholder="Enter Zip Code" 
+        required pattern="\d{6}"/>
+    </div>
+                <fieldset>
+                    <legend>Payment Details</legend>
+                    <label for="cardName">Name on Card:</label>
+                    <input type="text" id="cardName" name="cardName" required><br>
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}"><br>
+                    <label for="expDate">Expiry Date:</label>
+                    <input type="month" id="expDate" name="expDate" required><br>
+
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" required pattern="\d{3}">
+                </fieldset>
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const genderSelect = document.getElementById("gender");
+    const maleOutfits = document.getElementById("maleOutfits");
+    const femaleOutfits = document.getElementById("femaleOutfits");
+
+    genderSelect.addEventListener("change", function() {
+        if (genderSelect.value === "male") {
+            maleOutfits.style.display = "block";
+            femaleOutfits.style.display = "none";
+        } else if (genderSelect.value === "female") {
+            femaleOutfits.style.display = "block";
+            maleOutfits.style.display = "none";
+        } else {
+            maleOutfits.style.display = "none";
+            femaleOutfits.style.display = "none";
+        }
+    });
+});
+</script>
